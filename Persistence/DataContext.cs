@@ -10,6 +10,7 @@ namespace Persistence
 
         }
 
+        // 'Activities' reflects the name of the table
         public DbSet<Activity> Activities { get; set; }
     }
 }

@@ -4,6 +4,7 @@ namespace Domain
 {
     public class Activity
     {
+        // Entity Framework sets any property named 'id' as a primary key by default
         public Guid Id { get; set; }
         public string Title { get; set; }
         public DateTime Date { get; set; }
