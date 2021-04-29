@@ -15,25 +15,35 @@ interface Props {
     closeForm: () => void;
     createOrEdit: (acvitity : Activity) => void;
     deleteActivity: (id: string) => void;
+    submitting: boolean;
 }
 // activities within the function declaration is gotten from our Props interface, and can as such now be used as 'activities' in our jsx
 // only sho ActivityDetails if activities[0] exists. '&&' will execute anything to the right of it, if the left condition is not null
-export default function ActivityDashboard({activities, selectedActivity, selectActivity, cancelSelectActivity, editMode, openForm, closeForm, createOrEdit, deleteActivity}: Props) {
+export default function ActivityDashboard({activities, selectedActivity, selectActivity, cancelSelectActivity,
+    editMode, openForm, closeForm, createOrEdit, deleteActivity, submitting}: Props) {
     return (
         <Grid>
             <Grid.Column width='10'>
-                <ActivityList activities={activities}
-                selectActivity={selectActivity}
-                deleteActivity={deleteActivity}/>
+                <ActivityList
+                    activities={activities}
+                    selectActivity={selectActivity}
+                    deleteActivity={deleteActivity}
+                    submitting={submitting}/>
             </Grid.Column>
             <Grid.Column width='6'>
                 {selectedActivity && !editMode &&
-                <ActivityDetails activity={selectedActivity}
-                cancelSelectActivity={cancelSelectActivity}
-                openForm={openForm}
+                <ActivityDetails
+                    activity={selectedActivity}
+                    cancelSelectActivity={cancelSelectActivity}
+                    openForm={openForm}
                 /> }
                 {editMode &&
-                <ActivityForm closeForm={closeForm} activity={selectedActivity} createOrEdit={createOrEdit}/>}
+                <ActivityForm
+                    closeForm={closeForm}
+                    activity={selectedActivity}
+                    createOrEdit={createOrEdit}
+                    submitting={submitting}
+                />}
             </Grid.Column>
         </Grid>
     )
